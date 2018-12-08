@@ -110,29 +110,27 @@ app.get("/clearall", function(req, res) {
     });
 });
 
-app.post("/update/:id", function(req, res) {
+app.put("/save", function(req, res) {
 
-    db.saveData.insert(
-        {
-            title: title,
-            link: link,
-            summary: summary,
-            save: "yes"
-        },
-        function(error, edited) {
-            // Log any errors from mongojs
-            if (error) {
-            console.log(error);
-            res.send(error);
-            }
-            else {
-            // Otherwise, send the mongojs response to the browser
-            // This will fire off the success function of the ajax request
-            console.log(edited);
-            res.send(edited);
-            }
+    db.saveData.insert({
+        title: req.body.title,
+        summary: req.body.summary,
+        link: req.body.link,
+        save: 'yes'
+    }),
+    function(error, edited) {
+        // Log any errors from mongojs
+        if (error) {
+        console.log(error);
+        res.send(error);
         }
-    );
+        else {
+        // Otherwise, send the mongojs response to the browser
+        // This will fire off the success function of the ajax request
+        console.log(edited);
+        res.send(edited);
+        }
+    }
 });
 
 app.get("/delete/:id", function(req, res) {

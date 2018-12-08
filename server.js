@@ -116,6 +116,7 @@ app.put("/save", function(req, res) {
         title: req.body.title,
         summary: req.body.summary,
         link: req.body.link,
+        notes: req.body.notes,
         save: 'yes'
     }),
     function(error, edited) {

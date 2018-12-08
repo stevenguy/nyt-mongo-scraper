@@ -36,9 +36,11 @@ scrapeAll.addEventListener('click', function() {
             const cardSummary = $('<p>' + data[i].summary + '</p>')
             const cardFooter = $('<div class="uk-card-footer">')
             const cardAction = $('<a class="uk-button uk-button-default" href="' + data[i].link + '">Read more</a>')
+            const cardNote = $('<input class="uk-input" type="text" placeholder="Add Your Notes">')
             const save = $('<a id="save' + index + '" class="uk-button uk-button-default save">Save</a>')
             index ++
             cardFooter.append(cardAction)
+            cardFooter.append(cardNote)
             cardFooter.append(save)
             cardBody.append(cardSummary)
             cardHeader.append(cardTitle)
@@ -65,17 +67,19 @@ deleteAll.addEventListener('click', function() {
 // Update Save Property    
 $(document).on('click', '.save', function() {
     event.preventDefault()
-    let userSave = {}
-    const articleId  = $(this).attr("id")
-    const articleSummary = $("p").text()
+
+    const articleId  = $('div').attr("id")
+    const articleSummary = $('p').text()
     const articleLink = $("a").attr("href")
     const articleTitle = $("h3").text()
+    const articleNotes = document.querySelector('input').value,
 
     // Save vote
     userSave = {
         title: articleTitle,
         summary: articleSummary,
         link: articleLink,
+        notes: articleNotes,
         save: "yes"
     }
     console.log(userSave)
@@ -122,12 +126,17 @@ saveArticles.addEventListener('click', function() {
     })
 })
 
-// deleteSave.addEventListener('click', function() {
+// $(document).on('click', '.delete', function() {
 
-//     $.getJSON("/update/" + _id, function(data) {
-//         console.log(data)
+//     event.preventDefault()
+//     const articleId  = $('.uk-card').attr("id")
+//     console.log(articleId)
+//     $.ajax({
+//         url: "/delete/" + articleId,
+//         method: 'PUT',
 //     })
-//     $('#' + articleId).remove();
-//     $('#scrapeOutput').hide();
-//     $('#saveOutput').show();
+//     .then(function(response) {
+//         location.reload()
+//         $('#' + articleId).remove();
+//     })
 // })

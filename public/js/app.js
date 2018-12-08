@@ -22,6 +22,8 @@ homeButton.addEventListener('click', function() {
 
 // Push scrape artiles to DOM
 scrapeAll.addEventListener('click', function() {
+    $('#scrapeOutput').show();
+    $('#saveOutput').hide();
     $.getJSON("/all", function(data) {
         console.log(data);
         index = 1
@@ -83,17 +85,41 @@ $(document).on('click', '.save', function() {
         method: 'PUT',
         data: userSave
     })
-    // $.ajax({
-    //     type:'PUT',
-    //     url: '/update/' + articleId,
-    //     data: {
-    //         save: "yes"
-    //     }
-    // })
-    // .then(function(response) {
-        // location.reload()
-        // $('#' + articleId).remove();
-    // })
+    .then(function(response) {
+        location.reload()
+        $('#' + articleId).remove();
+    })
+})
+
+saveArticles.addEventListener('click', function() {
+    $.getJSON("/saveall", function(data) {
+        console.log(data);
+        index = 1
+        for (let i = 0; i < data.length; i++) {
+            // Send a "Scrape Complete" message to the browser
+            const saveDiv = $('<div id="' + data[i]._id + '" class="uk-card uk-card-default uk-width-1-2@m">')
+            const saveHeader = $('<div class="uk-card-header">')
+            const saveTitle = $('<h3 class="uk-card-title uk-margin-remove-bottom">' + data[i].title + '</h3>')
+            const saveBody = $('<div class="uk-card-body">')
+            const saveSummary = $('<p>' + data[i].summary + '</p>')
+            const saveFooter = $('<div class="uk-card-footer">')
+            const saveAction = $('<a class="uk-button uk-button-default" href="' + data[i].link + '">Read more</a>')
+            const deleteArticle = $('<a id="delete' + index + '" class="uk-button uk-button-default delete">Delete</a>')
+            index ++
+            saveFooter.append(saveAction)
+            saveFooter.append(deleteArticle)
+            saveBody.append(saveSummary)
+            saveHeader.append(saveTitle)
+            saveDiv.append(saveHeader)
+            saveDiv.append(saveBody)
+            saveDiv.append(saveFooter)
+
+            // PUSH TO DOM
+            $('#scrapeOutput').hide();
+            $('#saveOutput').show();
+            $('#saveOutput').append(saveDiv)
+        }
+    })
 })
 
 // deleteSave.addEventListener('click', function() {

@@ -67,7 +67,6 @@ deleteAll.addEventListener('click', function() {
 // Update Save Property    
 $(document).on('click', '.save', function() {
     event.preventDefault()
-
     const articleId  = $('div').attr("id")
     const articleSummary = $('p').text()
     const articleLink = $("a").attr("href")

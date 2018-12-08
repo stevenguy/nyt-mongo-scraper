@@ -127,6 +127,7 @@ saveArticles.addEventListener('click', function() {
 //     $.getJSON("/update/" + _id, function(data) {
 //         console.log(data)
 //     })
+//     $('#' + articleId).remove();
 //     $('#scrapeOutput').hide();
 //     $('#saveOutput').show();
 // })

@@ -3,7 +3,7 @@ const homeButton = document.getElementById('homeButton')
 const saveArticles = document.getElementById('saveArticles')
 const scrapeAll = document.getElementById('scrapeAll')
 const deleteAll = document.getElementById('deleteAll')
-const deleteSave = document.getElementByClassName('save')
+// const deleteSave = document.getElementByClassName('save')
 
 document.addEventListener("DOMContentLoaded", function(event) {
     $.ajax({

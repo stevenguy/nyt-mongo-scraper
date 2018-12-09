@@ -152,7 +152,7 @@ app.get("/save/:id", function(req, res) {
     // Remove a note using the objectID
     db.saveData.remove(
         {
-            _id: mongojs.objectID(req.params.id)
+            _id: mongojs.ObjectID(req.params.id)
         },
         function(error, removed) {
             // Log any errors from mongojs

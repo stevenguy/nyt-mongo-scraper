@@ -3,7 +3,6 @@ const homeButton = document.getElementById('homeButton')
 const saveArticles = document.getElementById('saveArticles')
 const scrapeAll = document.getElementById('scrapeAll')
 const deleteAll = document.getElementById('deleteAll')
-// const deleteSave = document.getElementByClassName('save')
 
 // Scrape articles on DOM load
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -132,9 +131,9 @@ saveArticles.addEventListener('click', function() {
 // Delete Save Article
 $(document).on('click', '.delete', function() {
     event.preventDefault()
-    let id = $(this).attr('id')
+    let v = $(this).attr('id')
     // Extracts button's id number
-    let partials = id.split('s')
+    let partials = v.split('s')
     // Logs buttons position
     let pos = partials[1]
     console.log(pos)
@@ -142,11 +141,10 @@ $(document).on('click', '.delete', function() {
     const articleId = $('#savuk-card' + [pos]).attr('data')
     console.log(articleId)
 
-    $.ajax({
+    $.ajax('/save/' + articleId, {
         method: 'DELETE',
-        url: '/save/' + articleId,
-        data: articleId
     })
-
+    $.getJSON('/save/' + articleId, function(req, res) {
+    })
     $('#savuk-card' + [pos]).remove();
 })

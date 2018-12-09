@@ -9,9 +9,9 @@ const path = require("path");
 // Initialize Express
 const app = express()
 
-var MONGOLAB_SILVER_URI = process.env.MONGODB_URI
+var MONGOLAB_MAROON_URI = process.env.MONGODB_URI
 
-mongoose.connect(MONGOLAB_SILVER_URI);
+mongoose.connect(MONGOLAB_MAROON_URI);
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));

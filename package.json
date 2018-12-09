@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "lockfileVersion": 1,
   "requires": true,
-  "description": "### Overview",
+  "description": "NYT Mongo Scraper",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

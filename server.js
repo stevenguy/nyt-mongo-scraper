@@ -9,7 +9,9 @@ const path = require("path");
 // Initialize Express
 const app = express()
 
-const PORT = process.env.PORT || 8080;
+var MONGOLAB_SILVER_URI = process.env.MONGODB_URI
+
+mongoose.connect(MONGOLAB_SILVER_URI);
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));

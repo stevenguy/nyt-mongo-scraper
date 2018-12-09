@@ -1,6 +1,8 @@
 {
   "name": "nyt-mongo-scraper",
   "version": "1.0.0",
+  "lockfileVersion": 1,
+  "requires": true,
   "description": "### Overview",
   "main": "server.js",
   "scripts": {
